@@ -34,7 +34,7 @@ services:
   uber_heat_front:
     build:
       context: ./uber_heat_front
-      dockerfile: ./uber_heat_front/Dockerfile
+      dockerfile: ./Dockerfile
     environment:
       - BACKEND_URL=nginx:80
     volumes:
