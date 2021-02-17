@@ -15,7 +15,6 @@ services:
     build:
       context: ./uber_heat_monolithe
       dockerfile: ./docker/php/Dockerfile
-      target: php_uber_heat
     volumes:
       - './uber_heat_monolithe/:/app'
       - './uber_heat_monolithe/docker/php/fpm.conf:/usr/local/etc/php-fpm.conf:ro'
@@ -36,7 +35,6 @@ services:
     build:
       context: ./uber_heat_front
       dockerfile: ./uber_heat_front/Dockerfile
-      target: front_uber_heat
     environment:
       - BACKEND_URL=nginx:80
     volumes:
