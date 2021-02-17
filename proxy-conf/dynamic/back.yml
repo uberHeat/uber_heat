@@ -4,7 +4,7 @@ http:
             entryPoints:
                 - web
             service: back
-            rule: Host(`toto.localhost`)
+            rule: Host(`backend.localhost`)
 
     services:
         back:
