@@ -93,6 +93,7 @@ done
 # BUILD CUSTOM IMAGE
 echo ""
 print "$ORANGE=> BUILD CUSTOM IMAGE $NC"
+cd uber_heat
 CUSTOM_IMG=("uber_heat_php" "uber_heat_front")
 
 for IMG in "${CUSTOM_IMG[@]}"
