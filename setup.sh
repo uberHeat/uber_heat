@@ -31,7 +31,7 @@ print "$ORANGE=> CHECK REQUIREMENTS $NC"
 COMMANDS_NEED=("git" "curl" "docker" "docker-compose")
 for COMMAND in "${COMMANDS_NEED[@]}"
 do
-    if ! command -v $COMMAND &>> install.log
+    if ! command -v $COMMAND >> install.log 2>&1
     then
         print "$RED not found.$NC \t$COMMAND"
         exit
@@ -47,7 +47,7 @@ REPOS_LIST=("https://github.com/uberHeat/uber_heat.git" "https://github.com/uber
 
 for REPO in "${REPOS_LIST[@]}"
 do
-    git clone $REPO &>> install.log
+    git clone $REPO >> install.log 2>&1
     if [ "$?" -ne 0 ]
     then
         print "$RED ERROR $NC \t${REPO##*/}"
@@ -80,7 +80,7 @@ IMG_TO_DWL=("php:7.4.14-fpm" "composer:1.7.2" "mysql:5.7" "mcr.microsoft.com/dot
 
 for IMG in "${IMG_TO_DWL[@]}"
 do
-    docker pull $IMG &>> install.log
+    docker pull $IMG >> install.log 2>&1
     if [ "$?" -ne 0 ]
     then
         print "$RED ERROR $NC \t${IMG##*/}"
@@ -97,7 +97,7 @@ CUSTOM_IMG=("uber_heat_php" "uber_heat_front")
 
 for IMG in "${CUSTOM_IMG[@]}"
 do
-    docker-compose build $IMG &>> install.log
+    docker-compose build $IMG >> install.log 2>&1
     if [ "$?" -ne 0 ]
     then
         print "$RED ERROR $NC \t$IMG"
