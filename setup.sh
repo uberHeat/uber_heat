@@ -141,8 +141,9 @@ else
 fi
 
 echo ""
-print "$GREEN=> SUCCES"
+print "$GREEN=> SUCCESS$NC"
+echo ""
 print "You can now use our UI in your favorite browser:"
-print "UI: http://uberheat.localhost"
-print "API http://backend.localhost"
-print "$NC"
+print "UI: $GREEN http://uberheat.localhost$NC"
+print "API: $GREEN http://backend.localhost$NC"
+print ""
