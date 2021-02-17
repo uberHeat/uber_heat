@@ -10,4 +10,4 @@ http:
         front:
             loadBalancer:
                 servers:
-                  - url: "http://uber_heat_front:80/"
+                  - url: "http://uber_heat_front"

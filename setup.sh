@@ -76,7 +76,7 @@ done
 # PULL BASE IMAGE
 echo ""
 print "$ORANGE=> PULL BASE IMAGE $NC"
-IMG_TO_DWL=("php:7.4.14-fpm" "composer:1.7.2" "mysql:5.7" "mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim" "mcr.microsoft.com/dotnet/core/sdk" "traefik:v2.3")
+IMG_TO_DWL=("php:7.4.14-fpm" "composer:latest" "mysql:5.7" "mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim" "mcr.microsoft.com/dotnet/core/sdk" "traefik:v2.3")
 
 for IMG in "${IMG_TO_DWL[@]}"
 do
@@ -107,10 +107,26 @@ do
     fi
 done
 
+# INSTALL SYMFONY DEPENDENCIES
+echo ""
+cd uber_heat_monolithe
+print "$ORANGE=> INSTALL BACKEND $NC"
+
+cp .env.dist .env
+docker run --rm -v $PWD:/app composer:latest composer install --no-interaction  >> ../../install.log 2>&1
+if [ "$?" -ne 0 ]
+then
+    print "$RED ERROR $NC \t error during 'composer install' "
+    exit
+else
+    print "$GREEN OK $NC \t backend installed"
+fi
+cd ..
+
 # LAUNCH UBER HEAT APP LOCALLY
 echo ""
 print "$ORANGE=> LAUNCH APP LOCALLY $NC"
 docker-compose up -d 2>&1 | tee ../install.log
 
 echo ""
-print "$GREEN DONE : browse http://uberheat.localhost"
+print "$GREEN DONE : browse http://uberheat.localhost $NC"
