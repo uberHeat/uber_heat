@@ -12,9 +12,6 @@ services:
     volumes:
         - "./proxy-conf/traefik.yml:/etc/traefik/traefik.yml"
         - "./proxy-conf/dynamic/:/etc/traefik/traefik.d/"
-    networks:
-        - proxy
-        - monitoring
 
   # NGINX service for fast-cgi
   nginx:
