@@ -23,8 +23,13 @@ echo  " | |  | | |_) | |__  | |__) |     | |__| | |__     /  \  | |    "
 echo  " | |  | |  _ <|  __| |  _  /      |  __  |  __|   / /\ \ | |    "
 echo  " | |__| | |_) | |____| | \ \      | |  | | |____ / ____ \| |    "
 echo  "  \____/|____/|______|_|  \_\     |_|  |_|______/_/    \_\_|    "
+echo  " By Brice MICHALSKI, Alban PIERSON & Benjamin L'HONNEN                                                                "
 echo  "                                                                "
 print $NC
+
+echo ""
+print "If an error occurred, open the file: $PWD/install.log"
+echo ""
 
 # CHECK REQUIREMENTS
 print "$ORANGE=> CHECK REQUIREMENTS $NC"
@@ -126,7 +131,18 @@ cd ..
 # LAUNCH UBER HEAT APP LOCALLY
 echo ""
 print "$ORANGE=> LAUNCH APP LOCALLY $NC"
-docker-compose up -d 2>&1 | tee ../install.log
+docker-compose up -d >> ../install.log 2>&1
+if [ "$?" -ne 0 ]
+then
+    print "$RED ERROR $NC \t error during 'docker-compose up -d' "
+    exit
+else
+    print "$GREEN OK $NC \t APPLICATION UP & RUNNING"
+fi
 
 echo ""
-print "$GREEN DONE : browse http://uberheat.localhost $NC"
+print "$GREEN=> SUCCES"
+print "You can now use our UI in your favorite browser:"
+print "UI: http://uberheat.localhost"
+print "API http://backend.localhost"
+print "$NC"
