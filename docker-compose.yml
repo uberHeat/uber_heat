@@ -11,7 +11,7 @@ services:
       - '8081:80'
 
   # PHP-FPM service
-  php:
+  uber_heat_php:
     build:
       context: ./uber_heat_monolithe
       dockerfile: ./uber_heat_monolithe/docker/php/Dockerfile
@@ -32,7 +32,7 @@ services:
       - './uber_heat_monolithe/db:/var/lib/mysql'
 
     # MYSQL service
-  front:
+  uber_heat_front:
     build:
       context: ./uber_heat_front
       dockerfile: ./uber_heat_front/Dockerfile
