@@ -28,7 +28,7 @@ print $NC
 
 # CHECK REQUIREMENTS
 print "$ORANGE=> CHECK REQUIREMENTS $NC"
-COMMANDS_NEED=("git" "curl" "docker" "docker-compose")
+COMMANDS_NEED=("git" "curl" "docker" "docker-compose" "tee")
 for COMMAND in "${COMMANDS_NEED[@]}"
 do
     if ! command -v $COMMAND >> install.log 2>&1
@@ -76,7 +76,7 @@ done
 # PULL BASE IMAGE
 echo ""
 print "$ORANGE=> PULL BASE IMAGE $NC"
-IMG_TO_DWL=("php:7.4.14-fpm" "composer:1.7.2" "mysql:5.7" "mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim" "mcr.microsoft.com/dotnet/core/sdk" )
+IMG_TO_DWL=("php:7.4.14-fpm" "composer:1.7.2" "mysql:5.7" "mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim" "mcr.microsoft.com/dotnet/core/sdk" "traefik:v2.3")
 
 for IMG in "${IMG_TO_DWL[@]}"
 do
@@ -103,6 +103,14 @@ do
         print "$RED ERROR $NC \t$IMG"
         exit
     else
-        print "$GREEN OK $NC \t$IMG}"
+        print "$GREEN OK $NC \t$IMG"
     fi
 done
+
+# LAUNCH UBER HEAT APP LOCALLY
+echo ""
+print "$ORANGE=> LAUNCH APP LOCALLY $NC"
+docker-compose up -d 2>&1 | tee ../install.log
+
+echo ""
+print "$GREEN Browse http://localhost:8080"

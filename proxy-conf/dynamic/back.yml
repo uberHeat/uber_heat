@@ -1,0 +1,13 @@
+http:
+    routers:
+        router-front:
+            entryPoints:
+                - web
+            service: front
+            rule: Host(`api.uberheat.localhost`)
+
+    services:
+        front:
+            loadBalancer:
+                servers:
+                  - url: "http://nginx:80/"
