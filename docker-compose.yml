@@ -1,0 +1,48 @@
+version: '3.4'
+
+services:
+  # NGINX service
+  nginx:
+    image: nginx:1.15.5-alpine
+    volumes:
+      - './uber_heat_monolithe/docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
+      - './uber_heat_monolithe:/app'
+    ports:
+      - '8081:80'
+
+  # PHP-FPM service
+  php:
+    build:
+      context: ./uber_heat_monolithe
+      dockerfile: ./uber_heat_monolithe/docker/php/Dockerfile
+      target: php_uber_heat
+    volumes:
+      - './uber_heat_monolithe/:/app'
+      - './uber_heat_monolithe/docker/php/fpm.conf:/usr/local/etc/php-fpm.conf:ro'
+      - './uber_heat_monolithe/docker/php/php.ini:/usr/local/etc/php/php.ini:ro'
+
+  # MYSQL service
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=symfony
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - './uber_heat_monolithe/db:/var/lib/mysql'
+
+    # MYSQL service
+  front:
+    build:
+      context: ./uber_heat_front
+      dockerfile: ./uber_heat_front/Dockerfile
+      target: front_uber_heat
+    environment:
+      - BACKEND_URL=nginx:80
+    volumes:
+      - './uber_heat_monolithe/db:/var/lib/mysql'
+
+
+volumes:
+  # DB save
+  db: {}

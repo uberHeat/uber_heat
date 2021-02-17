@@ -5,5 +5,5 @@
 In your bash terminal:
 
 ```bash
-curl https://raw.githubusercontent.com/uberHeat/uber_heat/master/setup.sh | bash
+curl -s https://raw.githubusercontent.com/uberHeat/uber_heat/master/setup.sh | bash
 ```

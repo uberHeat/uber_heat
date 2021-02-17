@@ -1,14 +1,20 @@
 #!/bin/bash
-# Installation du projet | uber_heat
+# Installation du projet uber_heat
+
+
+# CONSTANT
 NC='\033[0m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 
+# FUNCTION
 print(){
     echo -e $1
 }
 
+## MAIN
+clear
 print $ORANGE
 echo  "  _    _ ____  ______ _____        _    _ ______       _______  "
 echo  " | |  | |  _ \|  ____|  __ \      | |  | |  ____|   /\|__   __| "
@@ -80,5 +86,22 @@ do
         exit
     else
         print "$GREEN OK $NC \t${IMG##*/}"
+    fi
+done
+
+# BUILD CUSTOM IMAGE
+echo ""
+print "$ORANGE=> BUILD CUSTOM IMAGE $NC"
+CUSTOM_IMG=("uber_heat_php" "uber_heat_front")
+
+for IMG in "${CUSTOM_IMG[@]}"
+do
+    docker-compose build $IMG &> /dev/null
+    if [ "$?" -ne 0 ]
+    then
+        print "$RED ERROR $NC \t$IMG"
+        exit
+    else
+        print "$GREEN OK $NC \t$IMG}"
     fi
 done
