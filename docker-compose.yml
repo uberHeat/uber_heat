@@ -2,19 +2,19 @@ version: '3.4'
 
 services:
 
-    reverse-proxy:
-      image: traefik:v2.3
-      container_name: reverse-proxy
-      restart: always
-      command: --api.insecure=true
-      ports:
-          - "80:80"
-      volumes:
-          - "./proxy-conf/traefik.yml:/etc/traefik/traefik.yml"
-          - "./proxy-conf/dynamic/:/etc/traefik/traefik.d/"
-      networks:
-          - proxy
-          - monitoring
+  reverse-proxy:
+    image: traefik:v2.3
+    container_name: reverse-proxy
+    restart: always
+    command: --api.insecure=true
+    ports:
+        - "80:80"
+    volumes:
+        - "./proxy-conf/traefik.yml:/etc/traefik/traefik.yml"
+        - "./proxy-conf/dynamic/:/etc/traefik/traefik.d/"
+    networks:
+        - proxy
+        - monitoring
 
   # NGINX service for fast-cgi
   nginx:
