@@ -97,7 +97,7 @@ print "$ORANGE=> BUILD CUSTOM IMAGE $NC"
 CUSTOM_IMG=("uber_heat_php" "uber_heat_front")
 for IMG in "${CUSTOM_IMG[@]}"
 do
-    docker-compose build $IMG >> install.log 2>&1
+    docker-compose build $IMG >> ../install.log 2>&1
     if [ "$?" -ne 0 ]
     then
         print "$RED ERROR $NC \t$IMG"

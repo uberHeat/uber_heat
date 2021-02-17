@@ -14,7 +14,7 @@ services:
   uber_heat_php:
     build:
       context: ./uber_heat_monolithe
-      dockerfile: ./uber_heat_monolithe/docker/php/Dockerfile
+      dockerfile: ./docker/php/Dockerfile
       target: php_uber_heat
     volumes:
       - './uber_heat_monolithe/:/app'
