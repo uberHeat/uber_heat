@@ -1,6 +1,6 @@
 #!/bin/bash
 # Installation du projet | uber_heat
-declare -a COMMANDS_NEED=("git" "curl" "nemo")
+declare -a COMMANDS_NEED=("git" "curl" "docker-compose")
 NC='\033[0m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
