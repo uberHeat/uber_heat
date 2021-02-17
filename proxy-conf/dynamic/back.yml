@@ -1,6 +1,6 @@
 http:
     routers:
-        router-front:
+        router-back:
             entryPoints:
                 - web
             service: back
