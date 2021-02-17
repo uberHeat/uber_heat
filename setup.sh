@@ -113,4 +113,4 @@ print "$ORANGE=> LAUNCH APP LOCALLY $NC"
 docker-compose up -d 2>&1 | tee ../install.log
 
 echo ""
-print "$GREEN Browse http://localhost:8080"
+print "$GREEN DONE : browse http://uberheat.localhost"
