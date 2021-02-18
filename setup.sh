@@ -23,17 +23,15 @@ echo  " | |  | | |_) | |__  | |__) |     | |__| | |__     /  \  | |    "
 echo  " | |  | |  _ <|  __| |  _  /      |  __  |  __|   / /\ \ | |    "
 echo  " | |__| | |_) | |____| | \ \      | |  | | |____ / ____ \| |    "
 echo  "  \____/|____/|______|_|  \_\     |_|  |_|______/_/    \_\_|    "
-echo  " By Brice MICHALSKI, Alban PIERSON & Benjamin L'HONNEN                                                                "
+echo  " By Brice MICHALSKI, Alban PIERSON & Benjamin L'HONNEN          "
 echo  "                                                                "
 print $NC
-
-echo ""
 print "If an error occurred, open the file: $PWD/install.log"
 echo ""
 
 # CHECK REQUIREMENTS
 print "$ORANGE=> CHECK REQUIREMENTS $NC"
-COMMANDS_NEED=("git" "curl" "docker" "docker-compose" "tee")
+COMMANDS_NEED=("git" "curl" "docker" "docker-compose")
 for COMMAND in "${COMMANDS_NEED[@]}"
 do
     if ! command -v $COMMAND >> install.log 2>&1
